@@ -4,6 +4,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.1"
@@ -17,6 +18,7 @@ buildscript {
 allprojects {
     ext {
         glide_version = '4.12.0'
+        koin_version = "2.0.1"
     }
     repositories {
         google()

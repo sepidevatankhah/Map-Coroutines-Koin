@@ -1,4 +1,4 @@
-package ir.nwise.app.ui.main
+package ir.nwise.myapplication.ui.main
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -17,7 +17,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import ir.nwise.app.R
+import ir.nwise.myapplication.R
 
 
 class MainFragment : Fragment() {

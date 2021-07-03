@@ -1,8 +1,8 @@
-package ir.nwise.app
+package ir.nwise.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ir.nwise.app.ui.main.MainFragment
+import ir.nwise.myapplication.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
