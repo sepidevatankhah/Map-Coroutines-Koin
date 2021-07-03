@@ -1,9 +1,9 @@
-package ir.nwise.myapplication.ui
+package ir.nwise.app.ui
 
 import android.app.Application
-import ir.nwise.myapplication.di.domainModule
-import ir.nwise.myapplication.di.networkModule
-import ir.nwise.myapplication.di.uiModule
+import ir.nwise.app.di.domainModule
+import ir.nwise.app.di.networkModule
+import ir.nwise.app.di.uiModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

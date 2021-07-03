@@ -1,4 +1,4 @@
-package ir.nwise.myapplication.ui.main
+package ir.nwise.app.ui.main
 
 import androidx.lifecycle.ViewModel
 

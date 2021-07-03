@@ -1,4 +1,4 @@
-package ir.nwise.myapplication.di
+package ir.nwise.app.di
 
 import org.koin.dsl.module
 
