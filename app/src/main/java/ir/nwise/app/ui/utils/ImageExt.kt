@@ -9,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import ir.nwise.app.R
+
 /**
  * This function fetches images from the URL and turns it to the bitmap
  * It is needed as the MarkerOptions only accepts bitmaps as input
@@ -33,4 +34,16 @@ fun getBitmap(context: Context, url: String?, showOnMap: (Bitmap) -> Unit) {
 
             override fun onLoadCleared(placeholder: Drawable?) {}
         })
+}
+
+fun ImageView.loadUrl(url: String?) {
+    val glideRequestManager = Glide.with(context)
+    glideRequestManager
+        .load(url)
+        .apply(
+            RequestOptions()
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.ic_car_svg)
+        )
+        .into(this)
 }
