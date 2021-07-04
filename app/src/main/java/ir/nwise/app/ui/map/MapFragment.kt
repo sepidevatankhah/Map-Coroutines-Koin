@@ -1,4 +1,4 @@
-package ir.nwise.app.ui.main
+package ir.nwise.app.ui.map
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import ir.nwise.app.R
-import ir.nwise.app.databinding.MainFragmentBinding
+import ir.nwise.app.databinding.FragmentMapBinding
 import ir.nwise.app.domain.models.Car
 import ir.nwise.app.ui.base.BaseFragment
 import ir.nwise.app.ui.utils.getBitmap
@@ -17,15 +17,11 @@ import ir.nwise.app.ui.utils.toastOopsError
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class MainFragment : BaseFragment<MapViewState, MapViewModel, MainFragmentBinding>() {
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
+class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>() {
     private val mapViewModel: MapViewModel by viewModel()
     private var googleMap: GoogleMap? = null
 
-    override fun getLayout(): Int = R.layout.main_fragment
+    override fun getLayout(): Int = R.layout.fragment_map
 
     override var callObserverFromOnViewCreated: Boolean = false
 
@@ -47,13 +43,11 @@ class MainFragment : BaseFragment<MapViewState, MapViewModel, MainFragmentBindin
     override fun render(state: MapViewState) {
         when (state) {
             is MapViewState.Loading -> {
-
             }
             is MapViewState.Loaded -> {
                 showMarkers(state.cars)
             }
             is MapViewState.Error -> {
-
                 Log.e(
                     "MapFragment",
                     state.throwable.message,

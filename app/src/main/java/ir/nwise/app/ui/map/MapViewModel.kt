@@ -1,4 +1,4 @@
-package ir.nwise.app.ui.main
+package ir.nwise.app.ui.map
 
 import ir.nwise.app.domain.models.Car
 import ir.nwise.app.domain.usecase.GetCarsUseCase

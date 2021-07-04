@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_graph"
+    app:startDestination="@id/homeFragment">
+    
+    <fragment
+        android:id="@+id/homeFragment"
+        android:label="@string/cars"
+        android:name="ir.nwise.app.ui.home.HomeFragment">
+        <action
+            android:id="@+id/openDetail"
+            app:destination="@id/carDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/carDetailFragment"
+        android:label="@string/cars_map"
+        android:name="ir.nwise.app.ui.detail.CarDetailFragment">
+<!--        <argument-->
+<!--            android:name="post"-->
+<!--            app:argType="ir.nwise.app.domain.models.PostResponse"-->
+<!--            app:nullable="true" />-->
+    </fragment>
+</navigation>

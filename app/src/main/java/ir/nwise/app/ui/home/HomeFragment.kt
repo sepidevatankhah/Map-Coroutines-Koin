@@ -7,14 +7,16 @@ import ir.nwise.app.R
 import ir.nwise.app.common.NetworkManager.isOnline
 import ir.nwise.app.databinding.FragmentHomeBinding
 import ir.nwise.app.ui.base.BaseFragment
+import ir.nwise.app.ui.map.MapViewModel
+import ir.nwise.app.ui.map.MapViewState
 import ir.nwise.app.ui.utils.hide
 import ir.nwise.app.ui.utils.show
 import ir.nwise.app.ui.utils.toastNoInternetConnection
 import ir.nwise.app.ui.utils.toastOopsError
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class HomeFragment : BaseFragment<HomeViewState, HomeViewModel, FragmentHomeBinding>() {
-    private val homeViewModel: HomeViewModel by viewModel()
+class HomeFragment : BaseFragment<MapViewState, MapViewModel, FragmentHomeBinding>() {
+    private val homeViewModel: MapViewModel by viewModel()
 
     private val carAdapter: CarAdapter =
         CarAdapter(
@@ -40,23 +42,23 @@ class HomeFragment : BaseFragment<HomeViewState, HomeViewModel, FragmentHomeBind
         super.onCreate(savedInstanceState)
     }
 
-    override fun render(state: HomeViewState) {
+    override fun render(state: MapViewState) {
         binding.swipeRefresh.isRefreshing = false
         binding.spinner.hide()
         when (state) {
-            is HomeViewState.Loading -> {
+            is MapViewState.Loading -> {
                 if (carAdapter.itemCount == 0) {
                     binding.spinner.show()
                     binding.recyclerView.hide()
                 }
             }
-            is HomeViewState.Loaded -> {
+            is MapViewState.Loaded -> {
                 binding.spinner.hide()
                 binding.recyclerView.show()
                 carAdapter.submitItems(state.cars)
                 carAdapter.notifyDataSetChanged()
             }
-            is HomeViewState.Error -> {
+            is MapViewState.Error -> {
                 binding.swipeRefresh.isRefreshing = false
                 binding.spinner.hide()
                 Log.e(
