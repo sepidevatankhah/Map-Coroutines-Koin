@@ -2,12 +2,12 @@ package ir.nwise.app.ui.map
 
 import android.os.Bundle
 import android.util.Log
+import androidx.navigation.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ir.nwise.app.R
 import ir.nwise.app.databinding.FragmentMapBinding
@@ -27,6 +27,7 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
     override var callObserverFromOnViewCreated: Boolean = false
 
     override fun onCreateViewCompleted() {
+        viewModel.getCars()
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync { googleMap ->
@@ -38,7 +39,6 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel = mapViewModel
         super.onCreate(savedInstanceState)
-        viewModel.getCars()
     }
 
     override fun render(state: MapViewState) {
@@ -60,42 +60,22 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
     }
 
     private fun showMarkers(vehicles: List<Car>) {
-        val markers: MutableMap<Marker, Car> = HashMap()
         vehicles.forEach { vehicle ->
             val location = LatLng(vehicle.latitude, vehicle.longitude)
-            val mapMarker = googleMap?.addMarker(
-                MarkerOptions()
-                    .position(location)
-                    .title(vehicle.name)
-            )
-            mapMarker?.let { marker -> markers.put(marker, vehicle) }
             getBitmap(requireContext(), vehicle.carImageUrl) { bitmap ->
-                mapMarker?.setIcon(BitmapDescriptorFactory.fromBitmap(bitmap))
+                googleMap?.addMarker(
+                    MarkerOptions()
+                        .position(location)
+                        .title(vehicle.name)
+                        .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+                )
             }
-            mapMarker?.showInfoWindow()
         }
         zoomToLastVehicle(vehicles.last())
 
-//        googleMap?.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
-//            override fun getInfoContents(markerItem: Marker?): View {
-//                // Getting view from the layout file
-//                val rootViewBinding: ItemMapMarkerWindowBinding =
-//                    DataBindingUtil.inflate(
-//                        layoutInflater,
-//                        R.layout.item_map_marker_window,
-//                        null,
-//                        false
-//                    )
-//                rootViewBinding.vehicleNameText.text = markers[markerItem]?.name
-//                rootViewBinding.plateText.text = markers[markerItem]?.licensePlate
-//                rootViewBinding.iconImage.loadUrl(markers[markerItem]?.carImageUrl)
-//                return rootViewBinding.root
-//            }
-//
-//            override fun getInfoWindow(markerItem: Marker?): View? {
-//                return null
-//            }
-//        })
+        googleMap?.setOnInfoWindowClickListener {
+            binding.root.findNavController().navigate(MapFragmentDirections.openCarDetail())
+        }
     }
 
     private fun zoomToLastVehicle(lastVehicle: Car) {
