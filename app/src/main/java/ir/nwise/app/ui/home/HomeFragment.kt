@@ -2,6 +2,7 @@ package ir.nwise.app.ui.home
 
 import android.os.Bundle
 import android.util.Log
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.nwise.app.R
 import ir.nwise.app.common.NetworkManager.isOnline
@@ -21,9 +22,9 @@ class HomeFragment : BaseFragment<MapViewState, MapViewModel, FragmentHomeBindin
     private val carAdapter: CarAdapter =
         CarAdapter(
             onItemClicked = { model ->
-//                binding.root.findNavController().navigate(
-//                    HomeFragmentDirections.openDetail(model)
-//                )
+                binding.root.findNavController().navigate(
+                    HomeFragmentDirections.openDetail()
+                )
             }
         )
 

@@ -8,6 +8,7 @@ data class Car(
     val id: String?,
     val modelIdentifier: String?,
     val modelName: String?,
+    val name: String?,
     val make: String?,
     val group: String?,
     val color: String?,

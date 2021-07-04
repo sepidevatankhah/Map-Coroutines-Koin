@@ -24,6 +24,7 @@ fun getBitmap(context: Context, url: String?, showOnMap: (Bitmap) -> Unit) {
         .load(url)
         .apply(
             RequestOptions()
+                .override(350, 170)
                 .placeholder(R.drawable.loading_animation)
                 .error(R.drawable.ic_car_svg)
         )

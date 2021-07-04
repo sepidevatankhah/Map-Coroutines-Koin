@@ -7,4 +7,6 @@
     <string name="cars_map">Show cars on map</string>
     <string name="home">Home</string>
     <string name="map">Map</string>
+    <string name="sepideh_vatankhah">Sepideh Vatankhah!</string>
+    <string name="vehicle_name">Vehicle Name : </string>
 </resources>
