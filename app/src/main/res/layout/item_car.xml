@@ -8,37 +8,160 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_width="match_parent">
+        
         <ImageView
             android:adjustViewBounds="true"
             android:id="@+id/car_image"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_width="140dp"
+            android:layout_width="130dp"
             android:scaleType="fitCenter"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription"
             tools:src="@tools:sample/backgrounds/scenic[0]" />
-    
-    
+        
+        
         <TextView
+            style="@style/AppTheme.HeaderTextStyle"
             android:ellipsize="end"
-            android:id="@+id/car_model"
+            android:id="@+id/vehicle_name_text"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="-25dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="-10dp"
             android:layout_width="0dp"
             android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/car_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/car_image"
             app:layout_constraintTop_toTopOf="@+id/car_image"
-            tools:text="Sepideh Vatankhah" />
+            tools:text="Vanessa" />
+        
+        <TextView
+            style="@style/AppTheme.TextViewStyle"
+            android:id="@+id/vehicle_make"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:text="@string/vehicle_make"
+            app:layout_constraintStart_toStartOf="@+id/vehicle_name_text"
+            app:layout_constraintTop_toBottomOf="@+id/vehicle_name_text" />
+        
+        <TextView
+            style="@style/AppTheme.TextViewStyle"
+            android:ellipsize="end"
+            android:id="@+id/vehicle_make_text"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_width="0dp"
+            android:lines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vehicle_make"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_make"
+            tools:text="BMW" />
+        
+        <TextView
+            style="@style/AppTheme.TextViewStyle"
+            android:id="@+id/vehicle_plate"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:text="@string/license_plate"
+            app:layout_constraintStart_toStartOf="@+id/vehicle_make"
+            app:layout_constraintTop_toBottomOf="@+id/vehicle_make" />
+        
+        <TextView
+            style="@style/AppTheme.TextViewStyle"
+            android:ellipsize="end"
+            android:id="@+id/vehicle_plate_text"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_width="0dp"
+            android:lines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vehicle_plate"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_plate"
+            tools:text="M-VO0259" />
+        
+        <TextView
+            style="@style/AppTheme.TextViewStyle"
+            android:id="@+id/vehicle_color"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:text="@string/vehicle_color"
+            app:layout_constraintStart_toStartOf="@+id/vehicle_name_text"
+            app:layout_constraintTop_toBottomOf="@+id/vehicle_plate" />
+        
+        <TextView
+            style="@style/AppTheme.TextViewStyle"
+            android:ellipsize="end"
+            android:id="@+id/vehicle_color_text"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_width="0dp"
+            android:lines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vehicle_color"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_color"
+            tools:text="midnight black" />
+        
+        <TextView
+            style="@style/AppTheme.TextViewStyle"
+            android:id="@+id/vehicle_fuel_type"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:text="@string/fuel_type"
+            app:layout_constraintStart_toStartOf="@+id/vehicle_name_text"
+            app:layout_constraintTop_toBottomOf="@+id/vehicle_color_text" />
+        
+        <TextView
+            style="@style/AppTheme.TextViewStyle"
+            android:ellipsize="end"
+            android:id="@+id/vehicle_fuel_type_text"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_width="0dp"
+            android:lines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vehicle_fuel_type"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_fuel_type"
+            tools:text="D" />
+        
+        <TextView
+            style="@style/AppTheme.TextViewStyle"
+            android:id="@+id/vehicle_fuel_level"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:text="@string/fuel_level"
+            app:layout_constraintStart_toStartOf="@+id/vehicle_name_text"
+            app:layout_constraintTop_toBottomOf="@+id/vehicle_fuel_type_text" />
+        
+        <TextView
+            style="@style/AppTheme.TextViewStyle"
+            android:ellipsize="end"
+            android:id="@+id/vehicle_fuel_level_text"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_width="0dp"
+            android:lines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vehicle_fuel_level"
+            app:layout_constraintTop_toTopOf="@+id/vehicle_fuel_level"
+            tools:text="0.7" />
     
     </androidx.constraintlayout.widget.ConstraintLayout>
     

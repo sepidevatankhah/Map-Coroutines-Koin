@@ -86,7 +86,7 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
         zoomToLastVehicle(vehicles.last())
 
         googleMap?.setOnInfoWindowClickListener {
-            binding.root.findNavController().navigate(MapFragmentDirections.openCarDetail())
+//            binding.root.findNavController().navigate(MapFragmentDirections.openCarDetail())
         }
     }
 

@@ -20,9 +20,9 @@
         android:id="@+id/carDetailFragment"
         android:label="@string/cars_map"
         android:name="ir.nwise.app.ui.detail.CarDetailFragment">
-<!--        <argument-->
-<!--            android:name="post"-->
-<!--            app:argType="ir.nwise.app.domain.models.PostResponse"-->
-<!--            app:nullable="true" />-->
+        <!--        <argument-->
+        <!--            android:name="post"-->
+        <!--            app:argType="ir.nwise.app.domain.models.PostResponse"-->
+        <!--            app:nullable="true" />-->
     </fragment>
 </navigation>

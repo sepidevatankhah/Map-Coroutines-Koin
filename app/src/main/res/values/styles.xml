@@ -18,7 +18,7 @@
     
     <style name="AppTheme.HeaderTextStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/campton_bold</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
     

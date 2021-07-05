@@ -2,6 +2,8 @@ package ir.nwise.app.ui.utils
 
 import android.content.Intent
 import android.util.SparseArray
+import android.view.View
+import androidx.annotation.IdRes
 import androidx.core.util.forEach
 import androidx.core.util.set
 import androidx.fragment.app.FragmentManager
@@ -216,3 +218,19 @@ private fun FragmentManager.isOnBackStack(backStackName: String): Boolean {
 }
 
 private fun getFragmentTag(index: Int) = "bottomNavigation#$index"
+
+
+fun View.findBottomNavigationView(): BottomNavigationView? =
+    rootView?.findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+
+fun View.updateBottomNavSelectedItem(@IdRes itemId: Int) =
+    findBottomNavigationView()?.updateSelectedItem(itemId)
+
+/**
+ * Updates selected item in [BottomNavigationView] if it is not selected.
+ */
+fun BottomNavigationView.updateSelectedItem(@IdRes resId: Int) {
+    if (selectedItemId != resId) {
+        selectedItemId = resId
+    }
+}

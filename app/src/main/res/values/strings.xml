@@ -12,4 +12,9 @@
     <string name="vehicle_name">Vehicle Name : </string>
     <string name="retry">Retry</string>
     <string name="ok">OK</string>
+    <string name="license_plate">License Plate : </string>
+    <string name="vehicle_color">Color : </string>
+    <string name="fuel_type">Fuel Type : </string>
+    <string name="fuel_level">Fuel Level : </string>
+    <string name="vehicle_make">Brand : </string>
 </resources>

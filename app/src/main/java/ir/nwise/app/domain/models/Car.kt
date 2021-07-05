@@ -14,7 +14,7 @@ data class Car(
     val color: String?,
     val series: String?,
     val fuelType: String?,
-    val fuelLevel: String?,
+    val fuelLevel: Float?,
     val transmission: String?,
     val licensePlate: String?,
     val latitude: Double,

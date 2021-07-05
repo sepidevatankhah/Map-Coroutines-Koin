@@ -44,7 +44,7 @@ fun ImageView.loadUrl(url: String?) {
         .apply(
             RequestOptions()
                 .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.ic_car_svg)
+                .error(R.drawable.ic_car_fallback)
         )
         .into(this)
 }

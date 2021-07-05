@@ -13,9 +13,17 @@ class CarViewHolder(
     override fun bind(model: Car) {
         with(model)
         {
-            binding.carModel.text = make
-            binding.carImage.loadUrl(carImageUrl)
-            binding.root.setOnClickListener { onItemClicked.invoke(model) }
+            binding.apply {
+                vehicleNameText.text = name
+                vehicleMakeText.text = make
+                carImage.loadUrl(carImageUrl)
+                vehicleColorText.text = color?.replace("_", " ")
+                vehicleFuelLevelText.text = fuelLevel?.toString()
+                vehicleFuelTypeText.text = fuelType
+                vehiclePlateText.text = licensePlate
+
+                root.setOnClickListener { onItemClicked.invoke(model) }
+            }
         }
     }
 }
