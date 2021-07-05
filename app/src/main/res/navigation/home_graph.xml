@@ -6,7 +6,7 @@
     
     <fragment
         android:id="@+id/homeFragment"
-        android:label="@string/cars"
+        android:label="@string/vehicles"
         android:name="ir.nwise.app.ui.home.HomeFragment">
         <action
             android:id="@+id/openDetail"
