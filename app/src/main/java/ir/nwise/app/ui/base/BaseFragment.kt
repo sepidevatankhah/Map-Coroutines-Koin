@@ -25,7 +25,7 @@ abstract class BaseFragment<ViewState, ViewModel : BaseViewModel<ViewState>, Bin
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        onCreateViewCompleted()
+        onCreateViewCompleted(savedInstanceState)
         setHasOptionsMenu(true)
         if (callObserverFromOnViewCreated)
             startObserving()
@@ -40,7 +40,7 @@ abstract class BaseFragment<ViewState, ViewModel : BaseViewModel<ViewState>, Bin
     /**
      * add your code here every thing injected and view
      */
-    abstract fun onCreateViewCompleted()
+    abstract fun onCreateViewCompleted(savedInstanceState: Bundle?)
 
     /**
      * add all functionality of page after rendering the view state

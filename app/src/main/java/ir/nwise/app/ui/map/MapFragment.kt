@@ -2,7 +2,6 @@ package ir.nwise.app.ui.map
 
 import android.os.Bundle
 import android.util.Log
-import androidx.navigation.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -16,6 +15,8 @@ import ir.nwise.app.domain.models.Car
 import ir.nwise.app.ui.base.BaseFragment
 import ir.nwise.app.ui.utils.DialogHelper
 import ir.nwise.app.ui.utils.getBitmap
+import ir.nwise.app.ui.utils.hide
+import ir.nwise.app.ui.utils.show
 import ir.nwise.app.ui.utils.toastOopsError
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -28,11 +29,11 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
 
     override var callObserverFromOnViewCreated: Boolean = false
 
-    override fun onCreateViewCompleted() {
-        getAllCars()
+    override fun onCreateViewCompleted(savedInstanceState: Bundle?) {
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync { googleMap ->
+            getAllCars()
             this.googleMap = googleMap
             startObserving()
         }
@@ -46,11 +47,16 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
     override fun render(state: MapViewState) {
         when (state) {
             is MapViewState.Loading -> {
+                binding.spinner.show()
+                binding.mapFragment.hide()
             }
             is MapViewState.Loaded -> {
+                binding.spinner.hide()
+                binding.mapFragment.show()
                 showMarkers(state.cars)
             }
             is MapViewState.Error -> {
+                binding.spinner.hide()
                 Log.e(
                     "MapFragment",
                     state.throwable.message,
@@ -84,10 +90,6 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
             }
         }
         zoomToLastVehicle(vehicles.last())
-
-        googleMap?.setOnInfoWindowClickListener {
-//            binding.root.findNavController().navigate(MapFragmentDirections.openCarDetail())
-        }
     }
 
     private fun zoomToLastVehicle(lastVehicle: Car) {

@@ -17,4 +17,6 @@
     <string name="fuel_type">Fuel Type : </string>
     <string name="fuel_level">Fuel Level : </string>
     <string name="vehicle_make">Brand : </string>
+    <string name="vehicle_detail">Vehicle detail</string>
+    <string name="show_vehicles_on_map">Show Vehicles On Map</string>
 </resources>

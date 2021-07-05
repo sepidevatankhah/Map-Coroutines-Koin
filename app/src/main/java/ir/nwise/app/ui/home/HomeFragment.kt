@@ -23,14 +23,14 @@ class HomeFragment : BaseFragment<MapViewState, MapViewModel, FragmentHomeBindin
         CarAdapter(
             onItemClicked = { model ->
                 binding.root.findNavController().navigate(
-                    HomeFragmentDirections.openDetail()
+                    HomeFragmentDirections.openDetail(model)
                 )
             }
         )
 
     override fun getLayout(): Int = R.layout.fragment_home
 
-    override fun onCreateViewCompleted() {
+    override fun onCreateViewCompleted(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
         binding.lifecycleOwner = this@HomeFragment
         setupSwipeRefreshLayout()

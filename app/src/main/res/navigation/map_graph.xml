@@ -5,14 +5,7 @@
     app:startDestination="@id/mapFragment">
     <fragment
         android:id="@+id/mapFragment"
-        android:label="MainFragment"
+        android:label="@string/show_vehicles_on_map"
         android:name="ir.nwise.app.ui.map.MapFragment">
-        <action
-            android:id="@+id/openCarDetail"
-            app:destination="@id/carDetailFragment2" />
     </fragment>
-    <fragment
-        android:id="@+id/carDetailFragment2"
-        android:label="CarDetailFragment"
-        android:name="ir.nwise.app.ui.detail.CarDetailFragment" />
 </navigation>

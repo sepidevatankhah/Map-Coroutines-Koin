@@ -18,11 +18,11 @@
     </fragment>
     <fragment
         android:id="@+id/carDetailFragment"
-        android:label="@string/cars_map"
+        android:label="@string/vehicle_detail"
         android:name="ir.nwise.app.ui.detail.CarDetailFragment">
-        <!--        <argument-->
-        <!--            android:name="post"-->
-        <!--            app:argType="ir.nwise.app.domain.models.PostResponse"-->
-        <!--            app:nullable="true" />-->
+        <argument
+            android:name="car"
+            app:argType="ir.nwise.app.domain.models.Car"
+            app:nullable="true" />
     </fragment>
 </navigation>
