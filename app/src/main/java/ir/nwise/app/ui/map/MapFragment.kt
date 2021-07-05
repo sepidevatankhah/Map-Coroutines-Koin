@@ -10,9 +10,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import ir.nwise.app.R
+import ir.nwise.app.common.NetworkManager
 import ir.nwise.app.databinding.FragmentMapBinding
 import ir.nwise.app.domain.models.Car
 import ir.nwise.app.ui.base.BaseFragment
+import ir.nwise.app.ui.utils.DialogHelper
 import ir.nwise.app.ui.utils.getBitmap
 import ir.nwise.app.ui.utils.toastOopsError
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -27,7 +29,7 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
     override var callObserverFromOnViewCreated: Boolean = false
 
     override fun onCreateViewCompleted() {
-        viewModel.getCars()
+        getAllCars()
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync { googleMap ->
@@ -55,6 +57,16 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
                     state.throwable
                 )
                 binding.root.toastOopsError()
+            }
+        }
+    }
+
+    private fun getAllCars() {
+        context?.let {
+            if (NetworkManager.isOnline(it))
+                viewModel.getCars()
+            else {
+                DialogHelper.showOfflineNoDataError(requireContext()) { _, _ -> viewModel.getCars() }
             }
         }
     }

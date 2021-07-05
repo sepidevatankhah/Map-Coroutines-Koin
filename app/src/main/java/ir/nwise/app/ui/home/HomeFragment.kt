@@ -10,9 +10,9 @@ import ir.nwise.app.databinding.FragmentHomeBinding
 import ir.nwise.app.ui.base.BaseFragment
 import ir.nwise.app.ui.map.MapViewModel
 import ir.nwise.app.ui.map.MapViewState
+import ir.nwise.app.ui.utils.DialogHelper
 import ir.nwise.app.ui.utils.hide
 import ir.nwise.app.ui.utils.show
-import ir.nwise.app.ui.utils.toastNoInternetConnection
 import ir.nwise.app.ui.utils.toastOopsError
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -92,7 +92,7 @@ class HomeFragment : BaseFragment<MapViewState, MapViewModel, FragmentHomeBindin
             if (isOnline(it))
                 viewModel.getCars()
             else {
-                view?.toastNoInternetConnection()
+                DialogHelper.showOfflineNoDataError(requireContext()) { _, _ -> viewModel.getCars() }
                 binding.swipeRefresh.isRefreshing = false
             }
         }

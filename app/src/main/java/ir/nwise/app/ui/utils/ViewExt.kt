@@ -32,7 +32,7 @@ fun View.toastNoInternetConnection() {
 fun View.toastOopsError() {
     Toast.makeText(
         context,
-        resources?.getString(R.string.oops),
+        resources?.getString(R.string.error),
         Toast.LENGTH_SHORT
     ).show()
 }

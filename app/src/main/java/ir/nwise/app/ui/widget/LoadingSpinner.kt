@@ -1,4 +1,4 @@
-package ir.nwise.app.ui.utils
+package ir.nwise.app.ui.widget
 
 import android.content.Context
 import android.graphics.drawable.Animatable
