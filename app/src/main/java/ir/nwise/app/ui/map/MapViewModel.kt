@@ -1,5 +1,6 @@
 package ir.nwise.app.ui.map
 
+import android.util.Log
 import ir.nwise.app.domain.models.Car
 import ir.nwise.app.domain.usecase.GetCarsUseCase
 import ir.nwise.app.domain.usecase.base.UseCaseResult

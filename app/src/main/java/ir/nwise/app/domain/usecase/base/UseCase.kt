@@ -1,10 +1,8 @@
 package ir.nwise.app.domain.usecase.base
 
-import ir.nwise.app.data.DefaultDispatcherProvider
 import ir.nwise.app.data.DispatcherProvider
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -13,8 +11,8 @@ import retrofit2.HttpException
 typealias CompletionBlock<T> = UseCaseResult<T>.() -> Unit
 
 abstract class UseCase<Param : Any?, Response>(
-    private val coroutineScope: CoroutineScope = MainScope(),
-    private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
+    private val coroutineScope: CoroutineScope,
+    private val dispatchers: DispatcherProvider
 ) {
     protected abstract suspend fun executeOnBackground(param: Param?): Response
 
