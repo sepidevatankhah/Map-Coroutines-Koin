@@ -1,4 +1,4 @@
-package ir.nwise.app
+package ir.nwise.app.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import ir.nwise.app.R
 import ir.nwise.app.databinding.ActivityMainBinding
 import ir.nwise.app.ui.utils.setupWithNavController
 

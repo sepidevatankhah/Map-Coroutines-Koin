@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import ir.nwise.app.MainActivity
+import ir.nwise.app.ui.MainActivity
 import ir.nwise.app.R
 import ir.nwise.app.databinding.FragmentSplashBinding
 
