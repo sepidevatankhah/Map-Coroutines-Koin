@@ -9,21 +9,21 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import ir.nwise.app.R
-import ir.nwise.app.common.NetworkManager
 import ir.nwise.app.databinding.FragmentMapBinding
 import ir.nwise.app.domain.models.Car
 import ir.nwise.app.ui.base.BaseFragment
-import ir.nwise.app.ui.utils.DialogHelper
+import ir.nwise.app.ui.error.ErrorType
 import ir.nwise.app.ui.utils.getBitmap
 import ir.nwise.app.ui.utils.hide
 import ir.nwise.app.ui.utils.show
-import ir.nwise.app.ui.utils.toastOopsError
+import ir.nwise.app.ui.widget.ErrorView
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>() {
     private val mapViewModel: MapViewModel by viewModel()
     private var googleMap: GoogleMap? = null
+    private var errorView: ErrorView? = null
 
     override fun getLayout(): Int = R.layout.fragment_map
 
@@ -32,6 +32,10 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
     override fun onCreateViewCompleted(savedInstanceState: Bundle?) {
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
+
+        errorView = activity?.findViewById(R.id.error_view)
+        errorView?.setButtonListener { getAllCars() }
+
         mapFragment.getMapAsync { googleMap ->
             getAllCars()
             this.googleMap = googleMap
@@ -45,36 +49,35 @@ class MapFragment : BaseFragment<MapViewState, MapViewModel, FragmentMapBinding>
     }
 
     override fun render(state: MapViewState) {
-        when (state) {
-            is MapViewState.Loading -> {
-                binding.spinner.show()
-                binding.mapFragment.hide()
-            }
-            is MapViewState.Loaded -> {
-                binding.spinner.hide()
-                binding.mapFragment.show()
-                showMarkers(state.cars)
-            }
-            is MapViewState.Error -> {
-                binding.spinner.hide()
-                Log.e(
-                    "MapFragment",
-                    state.throwable.message,
-                    state.throwable
-                )
-                binding.root.toastOopsError()
+        binding.apply {
+            errorView?.hide()
+            when (state) {
+                is MapViewState.Loading -> {
+                    spinner.show()
+                    mapFragment.hide()
+                }
+                is MapViewState.Loaded -> {
+                    errorView?.hide()
+                    spinner.hide()
+                    mapFragment.show()
+                    showMarkers(state.cars)
+                }
+                is MapViewState.Error -> {
+                    spinner.hide()
+                    mapFragment.hide()
+                    Log.e(
+                        "MapFragment",
+                        state.throwable.message,
+                        state.throwable
+                    )
+                    errorView?.show(ErrorType.fromThrowable(state.throwable))
+                }
             }
         }
     }
 
     private fun getAllCars() {
-        context?.let {
-            if (NetworkManager.isOnline(it))
-                viewModel.getCars()
-            else {
-                DialogHelper.showOfflineNoDataError(requireContext()) { _, _ -> viewModel.getCars() }
-            }
-        }
+        viewModel.getCars()
     }
 
     private fun showMarkers(vehicles: List<Car>) {

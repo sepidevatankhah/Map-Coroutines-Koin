@@ -1,27 +1,30 @@
 package ir.nwise.app.ui.map
 
-import android.util.Log
+import ir.nwise.app.common.NoInternetConnectionException
+import ir.nwise.app.domain.NetworkManager
 import ir.nwise.app.domain.models.Car
 import ir.nwise.app.domain.usecase.GetCarsUseCase
 import ir.nwise.app.domain.usecase.base.UseCaseResult
 import ir.nwise.app.ui.base.BaseViewModel
 
 
-class MapViewModel(private val getCarsUseCase: GetCarsUseCase) :
+class MapViewModel(
+    private val getCarsUseCase: GetCarsUseCase,
+    private val networkManager: NetworkManager
+) :
     BaseViewModel<MapViewState>() {
 
-    var carList : List<Car>? = null
     fun getCars() {
-        getCarsUseCase.execute {
-            when (this) {
-                is UseCaseResult.Loading -> liveData.postValue(MapViewState.Loading)
-                is UseCaseResult.Success ->{
-                    carList = this.data
-                    liveData.postValue(MapViewState.Loaded(this.data))
+        if (networkManager.hasNetwork()) {
+            getCarsUseCase.execute {
+                when (this) {
+                    is UseCaseResult.Loading -> liveData.postValue(MapViewState.Loading)
+                    is UseCaseResult.Success -> liveData.postValue(MapViewState.Loaded(this.data))
+                    is UseCaseResult.Error -> liveData.postValue(MapViewState.Error(this.exception))
                 }
-                is UseCaseResult.Error -> liveData.postValue(MapViewState.Error(this.exception))
             }
-        }
+        } else
+            liveData.postValue(MapViewState.Error(NoInternetConnectionException()))
     }
 
     override fun onCleared() {

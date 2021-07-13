@@ -9,8 +9,6 @@
         <item name="fontFamily">@font/campton_book</item>
     </style>
     
-    <style name="NoTitleBarTheme" parent="Theme.AppCompat.NoActionBar" />
-    
     <style name="AppTheme.TextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/campton_book</item>
         <item name="android:textSize">14sp</item>
@@ -27,6 +25,11 @@
         <item name="android:fontFamily">@font/campton_bold</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+    
+    <style name="AppTheme.Splash" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
 </resources>

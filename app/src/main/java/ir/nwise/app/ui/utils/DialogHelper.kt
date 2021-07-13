@@ -10,7 +10,7 @@ class DialogHelper {
         fun showOfflineNoDataError(context: Context, retry: DialogInterface.OnClickListener) {
             AlertDialog.Builder(context)
                 .setTitle(context.getString(R.string.oops))
-                .setMessage(context.getString(R.string.no_internet_connection))
+                .setMessage(context.getString(R.string.no_internet_error_title))
                 .setPositiveButton(context.getString(R.string.retry), retry)
                 .setNegativeButton(context.getString(R.string.ok)) { _, _ -> }
                 .setCancelable(false)

@@ -12,5 +12,5 @@ val uiModule = module {
     factory { HomeFragment() }
     factory { CarDetailFragment() }
 
-    viewModel { MapViewModel(get()) }
+    viewModel { MapViewModel(get(),get()) }
 }

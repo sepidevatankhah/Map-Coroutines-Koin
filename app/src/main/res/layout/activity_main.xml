@@ -32,6 +32,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/navigation_bottom_bar" />
+        
+        <ir.nwise.app.ui.widget.ErrorView
+            android:id="@+id/error_view"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:visibility="gone" />
     
     </androidx.constraintlayout.widget.ConstraintLayout>
     

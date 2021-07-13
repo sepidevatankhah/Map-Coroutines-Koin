@@ -4,6 +4,7 @@ import ir.nwise.app.databinding.ItemCarBinding
 import ir.nwise.app.domain.models.Car
 import ir.nwise.app.ui.base.BaseViewHolder
 import ir.nwise.app.ui.utils.loadUrl
+import java.util.*
 
 class CarViewHolder(
     val binding: ItemCarBinding,
@@ -17,7 +18,11 @@ class CarViewHolder(
                 vehicleNameText.text = name
                 vehicleMakeText.text = make
                 carImage.loadUrl(carImageUrl)
-                vehicleColorText.text = color?.replace("_", " ")
+                vehicleColorText.text = color?.replace("_", " ")?.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(
+                        Locale.getDefault()
+                    ) else it.toString()
+                }
                 vehicleFuelLevelText.text = fuelLevel?.toString()
                 vehicleFuelTypeText.text = fuelType
                 vehiclePlateText.text = licensePlate

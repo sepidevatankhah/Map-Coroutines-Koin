@@ -4,12 +4,16 @@
     
     <string name="error">Oops!\n A problem occurred!</string>
     <string name="oops">Oops!</string>
-    <string name="no_internet_connection">No Internet Connection!</string>
+    <string name="general_error_msg">A problem occurred!\nPlease try again.</string>
+    <string name="general_error_title">Oops.</string>
+    <string name="retry">Retry</string>
+    <string name="no_internet_error_msg">There was an error. Please check your internet connection and try again.</string>
+    <string name="no_internet_error_title">No Internet Connection!</string>
+    
     <string name="home">Home</string>
     <string name="map">Map</string>
     <string name="sepideh_vatankhah">Sepideh Vatankhah!</string>
     <string name="vehicle_name">Vehicle Name : </string>
-    <string name="retry">Retry</string>
     <string name="ok">OK</string>
     <string name="license_plate">License Plate : </string>
     <string name="vehicle_color">Color : </string>

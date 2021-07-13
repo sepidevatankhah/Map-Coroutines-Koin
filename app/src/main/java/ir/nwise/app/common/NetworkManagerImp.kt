@@ -5,9 +5,10 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.NetworkInfo
 import android.os.Build
+import ir.nwise.app.domain.NetworkManager
 
-object NetworkManager {
-    fun isOnline(context: Context): Boolean {
+class NetworkManagerImp (val context: Context) : NetworkManager {
+   override fun hasNetwork(): Boolean {
         var result = false
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
