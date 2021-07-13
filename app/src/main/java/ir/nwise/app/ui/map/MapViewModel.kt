@@ -1,5 +1,6 @@
 package ir.nwise.app.ui.map
 
+import androidx.lifecycle.viewModelScope
 import ir.nwise.app.common.NoInternetConnectionException
 import ir.nwise.app.domain.NetworkManager
 import ir.nwise.app.domain.models.Car
@@ -16,7 +17,7 @@ class MapViewModel(
 
     fun getCars() {
         if (networkManager.hasNetwork()) {
-            getCarsUseCase.execute {
+            getCarsUseCase.execute(viewModelScope) {
                 when (this) {
                     is UseCaseResult.Loading -> liveData.postValue(MapViewState.Loading)
                     is UseCaseResult.Success -> liveData.postValue(MapViewState.Loaded(this.data))
@@ -25,11 +26,6 @@ class MapViewModel(
             }
         } else
             liveData.postValue(MapViewState.Error(NoInternetConnectionException()))
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        getCarsUseCase.unsubscribe()
     }
 }
 

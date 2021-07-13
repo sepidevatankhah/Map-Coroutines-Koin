@@ -10,13 +10,14 @@ import retrofit2.HttpException
 
 typealias CompletionBlock<T> = UseCaseResult<T>.() -> Unit
 
-abstract class UseCase<Param : Any?, Response>(
-    private val coroutineScope: CoroutineScope,
-    private val dispatchers: DispatcherProvider
-) {
+abstract class UseCase<Param : Any?, Response>(private val dispatchers: DispatcherProvider) {
     protected abstract suspend fun executeOnBackground(param: Param?): Response
 
-    fun execute(param: Param? = null, block: CompletionBlock<Response>) {
+    fun execute(
+        coroutineScope: CoroutineScope,
+        param: Param? = null,
+        block: CompletionBlock<Response>
+    ) {
         block(UseCaseResult.Loading)
         unsubscribe()
         coroutineScope.launch(dispatchers.job() + dispatchers.main()) {
