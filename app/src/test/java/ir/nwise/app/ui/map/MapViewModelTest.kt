@@ -2,11 +2,13 @@ package ir.nwise.app.ui.map
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.whenever
-import ir.nwise.app.data.repository.AppRepository
+import ir.nwise.app.domain.AppRepository
+import ir.nwise.app.domain.NetworkManager
 import ir.nwise.app.domain.models.Car
 import ir.nwise.app.domain.usecase.GetCarsUseCase
 import ir.nwise.app.ui.utils.CoroutineTestRule
 import ir.nwise.app.ui.utils.captureEmittedData
+import ir.nwise.app.ui.utils.captureLastEmittedValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
@@ -42,6 +44,9 @@ class MapViewModelTest {
     @Mock
     private lateinit var appRepository: AppRepository
 
+    @Mock
+    private lateinit var networkManager: NetworkManager
+
     @Before
     fun setUp() {
         getCarsUseCase = GetCarsUseCase(
@@ -49,7 +54,7 @@ class MapViewModelTest {
             coroutineScope = TestCoroutineScope(testCoroutineDispatcher),
             dispatchers = coroutinesTestRule.testDispatcherProvider
         )
-        testViewModel = MapViewModel(getCarsUseCase)
+        testViewModel = MapViewModel(getCarsUseCase, networkManager)
     }
 
     @Test
@@ -77,6 +82,9 @@ class MapViewModelTest {
             )
             //given
             val observer = testViewModel.liveData.captureEmittedData()
+            whenever(networkManager.hasNetwork()).thenAnswer {
+                true
+            }
             whenever(appRepository.getCars()).thenAnswer {
                 carList
             }
@@ -92,15 +100,36 @@ class MapViewModelTest {
             )
         }
 
-
     @Test
-    fun `when fetching results fails then return an error and must emit #Loading and #Error ViewStates`() {
-        val exception = Mockito.mock(HttpException::class.java)
+    fun `#getCars() must return car list`() =
         coroutinesTestRule.testDispatcher.runBlockingTest {
+            val carList = listOf(
+                Car(
+                    id = "1",
+                    name = "title",
+                    make = "BMW",
+                    group = "group",
+                    color = "color",
+                    latitude = 12.0,
+                    longitude = 12.0,
+                    carImageUrl = "carImageUrl",
+                    modelIdentifier = "modelIdentifier",
+                    modelName = "modelName",
+                    transmission = "transmission",
+                    innerCleanliness = "innerCleanliness",
+                    series = "series",
+                    fuelType = "fuelType",
+                    fuelLevel = 1.4f,
+                    licensePlate = "licensePlate"
+                )
+            )
             //given
-            val observer = testViewModel.liveData.captureEmittedData()
+            val observer = testViewModel.liveData.captureLastEmittedValue()
+            whenever(networkManager.hasNetwork()).thenAnswer {
+                true
+            }
             whenever(appRepository.getCars()).thenAnswer {
-                throw (exception)
+                carList
             }
 
             //when
@@ -109,9 +138,57 @@ class MapViewModelTest {
             //Then
             Assert.assertNotNull(testViewModel.liveData.value)
             Assert.assertEquals(
-                listOf(MapViewState.Loading, MapViewState.Error(exception)),
+                testViewModel.liveData.value,
+                observer.invoke()
+            )
+        }
+
+
+    @Test
+    fun `when fetching results fails then return an error and must emit #Loading and #Error ViewStates`() {
+        val exception = Mockito.mock(HttpException::class.java)
+        coroutinesTestRule.testDispatcher.runBlockingTest {
+            //given
+            val observer = testViewModel.liveData.captureLastEmittedValue()
+            whenever(appRepository.getCars()).thenAnswer {
+                throw (exception)
+            }
+            whenever(networkManager.hasNetwork()).thenAnswer {
+                true
+            }
+
+            //when
+            testViewModel.getCars()
+
+            //Then
+            Assert.assertNotNull(testViewModel.liveData.value)
+            Assert.assertEquals(
+                MapViewState.Error(exception),
                 observer.invoke()
             )
         }
     }
+
+    @Test
+    fun `when there is no internet connection, it must emit #NoInternetConnectionException`() {
+        coroutinesTestRule.testDispatcher.runBlockingTest {
+            //given
+            val observer = testViewModel.liveData.captureLastEmittedValue()
+            whenever(networkManager.hasNetwork()).thenAnswer {
+                false
+            }
+
+            //when
+            testViewModel.getCars()
+
+            //Then
+            Assert.assertNotNull(testViewModel.liveData.value)
+            Assert.assertEquals(
+                testViewModel.liveData.value,
+                observer.invoke()
+            )
+        }
+    }
+
+
 }

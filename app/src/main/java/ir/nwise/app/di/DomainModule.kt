@@ -3,7 +3,7 @@ package ir.nwise.app.di
 import android.content.Context
 import ir.nwise.app.common.NetworkManagerImp
 import ir.nwise.app.data.DefaultDispatcherProvider
-import ir.nwise.app.data.repository.AppRepository
+import ir.nwise.app.domain.AppRepository
 import ir.nwise.app.data.repository.AppRepositoryImp
 import ir.nwise.app.domain.NetworkManager
 import ir.nwise.app.domain.usecase.GetCarsUseCase

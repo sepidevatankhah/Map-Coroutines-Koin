@@ -1,5 +1,6 @@
 package ir.nwise.app.data.repository
 
+import ir.nwise.app.domain.AppRepository
 import ir.nwise.app.networking.ApiService
 import ir.nwise.app.domain.models.Car
 

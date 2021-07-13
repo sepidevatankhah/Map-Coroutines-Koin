@@ -1,4 +1,4 @@
-package ir.nwise.app.data.repository
+package ir.nwise.app.domain
 
 import ir.nwise.app.domain.models.Car
 
