@@ -51,7 +51,6 @@ class MapViewModelTest {
     fun setUp() {
         getCarsUseCase = GetCarsUseCase(
             appRepository = appRepository,
-            coroutineScope = TestCoroutineScope(testCoroutineDispatcher),
             dispatchers = coroutinesTestRule.testDispatcherProvider
         )
         testViewModel = MapViewModel(getCarsUseCase, networkManager)
