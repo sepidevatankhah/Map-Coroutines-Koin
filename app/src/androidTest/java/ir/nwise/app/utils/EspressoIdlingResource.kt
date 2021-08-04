@@ -1,4 +1,4 @@
-package ir.nwise.app.test
+package ir.nwise.app.utils
 
 import androidx.test.espresso.idling.CountingIdlingResource
 

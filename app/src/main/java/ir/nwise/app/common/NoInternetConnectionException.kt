@@ -1,6 +1,6 @@
 package ir.nwise.app.common
 
 /**
- *   Class created for handling no internet connection callbacks
+ *  Exception thrown in case there's no internet connection
  * */
 data class NoInternetConnectionException(override val message: String = "There is no internet connection") : Exception()

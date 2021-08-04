@@ -1,7 +1,6 @@
 package ir.nwise.app.utils
 
 import androidx.test.espresso.IdlingRegistry
-import ir.nwise.app.test.EspressoIdlingResource
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
