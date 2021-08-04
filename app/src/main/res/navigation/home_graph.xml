@@ -22,7 +22,7 @@
         android:name="ir.nwise.app.ui.detail.CarDetailFragment">
         <argument
             android:name="car"
-            app:argType="ir.nwise.app.domain.models.Car"
+            app:argType="ir.nwise.domain.models.Car"
             app:nullable="true" />
     </fragment>
 </navigation>

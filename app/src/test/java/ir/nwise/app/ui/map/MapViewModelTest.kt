@@ -2,16 +2,14 @@ package ir.nwise.app.ui.map
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.whenever
-import ir.nwise.app.domain.AppRepository
-import ir.nwise.app.domain.NetworkManager
-import ir.nwise.app.domain.models.Car
-import ir.nwise.app.domain.usecase.GetCarsUseCase
+import ir.nwise.domain.AppRepository
+import ir.nwise.domain.models.Car
+import ir.nwise.domain.usecase.GetCarsUseCase
 import ir.nwise.app.ui.utils.CoroutineTestRule
 import ir.nwise.app.ui.utils.captureEmittedData
 import ir.nwise.app.ui.utils.captureLastEmittedValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Before
@@ -45,7 +43,7 @@ class MapViewModelTest {
     private lateinit var appRepository: AppRepository
 
     @Mock
-    private lateinit var networkManager: NetworkManager
+    private lateinit var networkManager: ir.nwise.data.common.utils.NetworkManager
 
     @Before
     fun setUp() {

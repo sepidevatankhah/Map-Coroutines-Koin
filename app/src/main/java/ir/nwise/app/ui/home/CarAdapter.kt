@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ir.nwise.app.databinding.ItemCarBinding
-import ir.nwise.app.domain.models.Car
+import ir.nwise.domain.models.Car
 import ir.nwise.app.ui.base.BaseViewHolder
 import ir.nwise.app.ui.utils.replaceAll
 

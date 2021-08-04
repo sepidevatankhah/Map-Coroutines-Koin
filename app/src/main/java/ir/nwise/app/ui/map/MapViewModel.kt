@@ -1,17 +1,16 @@
 package ir.nwise.app.ui.map
 
 import androidx.lifecycle.viewModelScope
-import ir.nwise.app.common.NoInternetConnectionException
-import ir.nwise.app.domain.NetworkManager
-import ir.nwise.app.domain.models.Car
-import ir.nwise.app.domain.usecase.GetCarsUseCase
-import ir.nwise.app.domain.usecase.base.UseCaseResult
+import ir.nwise.data.common.NoInternetConnectionException
+import ir.nwise.domain.models.Car
+import ir.nwise.domain.usecase.GetCarsUseCase
+import ir.nwise.domain.usecase.base.UseCaseResult
 import ir.nwise.app.ui.base.BaseViewModel
 
 
 class MapViewModel(
     private val getCarsUseCase: GetCarsUseCase,
-    private val networkManager: NetworkManager
+    private val networkManager: ir.nwise.data.common.utils.NetworkManager
 ) :
     BaseViewModel<MapViewState>() {
 

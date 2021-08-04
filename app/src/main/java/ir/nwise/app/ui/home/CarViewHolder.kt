@@ -1,7 +1,7 @@
 package ir.nwise.app.ui.home
 
 import ir.nwise.app.databinding.ItemCarBinding
-import ir.nwise.app.domain.models.Car
+import ir.nwise.domain.models.Car
 import ir.nwise.app.ui.base.BaseViewHolder
 import ir.nwise.app.ui.utils.loadUrl
 import java.util.*

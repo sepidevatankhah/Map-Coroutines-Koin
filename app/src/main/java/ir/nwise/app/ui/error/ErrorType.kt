@@ -3,7 +3,7 @@ package ir.nwise.app.ui.error
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import ir.nwise.app.R
-import ir.nwise.app.common.NoInternetConnectionException
+import ir.nwise.data.common.NoInternetConnectionException
 
 interface ErrorType {
     companion object {

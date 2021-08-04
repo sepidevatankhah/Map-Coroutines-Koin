@@ -1,6 +1,6 @@
 package ir.nwise.app.ui.utils
 
-import ir.nwise.app.data.DispatcherProvider
+import ir.nwise.domain.common.DispatcherProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

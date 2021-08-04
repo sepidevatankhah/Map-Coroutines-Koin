@@ -10,7 +10,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import ir.nwise.app.R
 import ir.nwise.app.databinding.FragmentMapBinding
-import ir.nwise.app.domain.models.Car
+import ir.nwise.domain.models.Car
 import ir.nwise.app.ui.base.BaseFragment
 import ir.nwise.app.ui.error.ErrorType
 import ir.nwise.app.ui.utils.getBitmap
